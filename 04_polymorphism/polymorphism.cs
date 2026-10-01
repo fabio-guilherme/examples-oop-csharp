@@ -1,38 +1,88 @@
+/*
 class Character
 {
-    public string Name { get; private set; } = "Unknown";
-    public int Health { get; private set; } = 100;
-
-    public void TakeDamage(int damage)
+    public virtual void Attack()
     {
-        Health -= damage;
-    }
-
-    public void Heal(int amount)
-    {
-        Health += amount;
+        Console.WriteLine("Character attacks.");
     }
 }
 
 class Player : Character
 {
-    public int Strength { get; set; }
+    public override void Attack()
+    {
+        Console.WriteLine("Player attacks with a weapon.");
+    }
 }
 
 class Enemy : Character
 {
-    public int Damage { get; set; }
+    public override void Attack()
+    {
+        Console.WriteLine("Enemy attacks the player.");
+    }
 }
 
 class NPC : Character
 {
-    public string Dialogue { get; set; }
+    public override void Attack()
+    {
+        Console.WriteLine("NPC does something else.");
+    }
 }
 
-class Program
+class Pet : Character
 {
-    static void Main()
+}
+*/
+
+class Character
+{
+    public virtual void TakeTurn()
     {
-        Character character = new Player();
+        Console.WriteLine("Character takes a turn.");
+    }
+
+    class Player : Character
+    {
+        public override void TakeTurn()
+        {
+            Console.WriteLine("Player chooses an action.");
+        }
+    }
+    class Enemy : Character
+    {
+        public override void TakeTurn()
+        {
+            Console.WriteLine("Enemy follows its AI behaviour.");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Character player = new Player();
+            // Character enemy = new Enemy();
+            // Character npc = new NPC();
+            // Character pet = new Pet();
+
+            // player.Attack();
+            // enemy.Attack();
+            // npc.Attack();
+            // pet.Attack();
+
+            Character[] characters =
+            {
+            new Player(),
+            new Enemy()
+            };
+
+            foreach (Character character in characters)
+            {
+                character.TakeTurn();
+            }
+
+        }
     }
 }

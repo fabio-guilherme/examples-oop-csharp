@@ -1,35 +1,27 @@
-class Player
+class Character
 {
-    public string Name;
-    public int Health;
-
-    public void TakeDamage(int damage)
+    public string Type { get; set; }
+    public void Act()
     {
-        Health = Math.Max(0, Health - damage);
+        if (Type == "Player")
+            Console.WriteLine("Player attacks with a weapon.");
+        else if (Type == "Enemy")
+            Console.WriteLine("Enemy attacks the player.");
+        else
+            Console.WriteLine("NPC does something else.");
     }
-
-    public void Heal(int amount)
-    {
-        Health += amount;
-    }
-
-    public int Strength;
 }
 
-class Enemy
+class Program
 {
-    public string Name;
-    public int Health;
-
-    public void TakeDamage(int damage)
+    static void Main(string[] args)
     {
-        Health -= damage;
-    }
+        Character player = new Character { Type = "Player" };
+        Character enemy = new Character { Type = "Enemy" };
+        Character npc = new Character { Type = "NPC" };
 
-    public void Heal(int amount)
-    {
-        Health += amount;
+        player.Act();
+        enemy.Act();
+        npc.Act();
     }
-
-    public int Damage;
 }
