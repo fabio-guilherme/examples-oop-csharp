@@ -42,47 +42,46 @@ class Character
     {
         Console.WriteLine("Character takes a turn.");
     }
-
-    class Player : Character
+}
+class Player : Character
+{
+    public override void TakeTurn()
     {
-        public override void TakeTurn()
-        {
-            Console.WriteLine("Player chooses an action.");
-        }
+        Console.WriteLine("Player chooses an action.");
     }
-    class Enemy : Character
+}
+class Enemy : Character
+{
+    public override void TakeTurn()
     {
-        public override void TakeTurn()
-        {
-            Console.WriteLine("Enemy follows its AI behaviour.");
-        }
+        Console.WriteLine("Enemy follows its AI behaviour.");
     }
+}
 
-    class Program
+class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        // Character player = new Player();
+        // Character enemy = new Enemy();
+        // Character npc = new NPC();
+        // Character pet = new Pet();
+
+        // player.Attack();
+        // enemy.Attack();
+        // npc.Attack();
+        // pet.Attack();
+
+        Character[] characters =
         {
-            // Character player = new Player();
-            // Character enemy = new Enemy();
-            // Character npc = new NPC();
-            // Character pet = new Pet();
-
-            // player.Attack();
-            // enemy.Attack();
-            // npc.Attack();
-            // pet.Attack();
-
-            Character[] characters =
-            {
-            new Player(),
-            new Enemy()
+                new Player(),
+                new Enemy()
             };
 
-            foreach (Character character in characters)
-            {
-                character.TakeTurn();
-            }
-
+        foreach (Character character in characters)
+        {
+            character.TakeTurn();
         }
+
     }
 }
