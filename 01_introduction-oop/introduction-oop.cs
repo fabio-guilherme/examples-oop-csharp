@@ -2,30 +2,24 @@ using System;
 
 class Player
 {
-    private int health = 100;
-
-    public string Name;
+    public string Name = "Unknown";
+    public int Health = 100;
     public int Level;
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        Health -= damage;
     }
 
     public void Heal(int amount)
     {
-        health += amount;
-    }
-
-    public int GetHealth()
-    {
-        return health;
+        Health += amount;
     }
 }
 
 class Weapon
 {
-    public string Name;
+    public string Name = "Unknown";
     public int Damage;
 
     public void Attack()
@@ -45,7 +39,7 @@ class Program
 
         player1.TakeDamage(25);
 
-        Console.WriteLine(player1.GetHealth());
+        Console.WriteLine(player1.Health);
 
         Weapon sword = new Weapon();
 
