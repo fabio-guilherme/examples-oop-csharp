@@ -2,60 +2,55 @@ using System;
 
 class Player
 {
-    private string Name = "Unknown";
-    public int Health;
-    private int Level;
-    public int Strength;
+    public string Name { get; private set; } = "Unknown";
+    public int Health { get; private set; } = 100;
+    public int Level { get; private set; } = 1;
+    public int Strength { get; set; }
 
     public void TakeDamage(int damage)
     {
+        if (damage < 0)
+        {
+            Console.WriteLine("Damage cannot be negative.");
+            return;
+        }
+
         Health -= damage;
+
+        if (Health < 0)
+        {
+            Health = 0;
+        }
     }
 
     public void Heal(int amount)
     {
+        if (amount < 0)
+        {
+            Console.WriteLine("Healing amount cannot be negative.");
+            return;
+        }
+
         Health += amount;
     }
 
-    public void SetLevel(int level)
+    public void LevelUp()
     {
-        if (level < 1)
-        {
-            Console.WriteLine("Level cannot be less than 1.");
-            return;
-        }
-        Level = level;
-    }
-
-    public int GetLevel()
-    {
-        return Level;
-    }
-
-}
-/*
-class Weapon
-{
-    public string Name;
-    public int Damage;
-
-    public void Attack()
-    {
-        Console.WriteLine(Name + " attacks for " + Damage + " damage!");
+        Level++;
     }
 }
-*/
+
 class Program
 {
     static void Main()
     {
         Player player1 = new Player();
 
-        player1.Health = -1000;
-        player1.SetLevel(-5);
+        player1.TakeDamage(25);
+        player1.Heal(10);
+        player1.LevelUp();
 
         Console.WriteLine(player1.Health);
-        Console.WriteLine(player1.GetLevel());
-
+        Console.WriteLine(player1.Level);
     }
 }
